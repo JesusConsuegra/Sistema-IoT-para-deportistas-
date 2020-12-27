@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				function generar(){
+					$.ajax({
+						type: "GET",
+						url: "/aleatorio",
+						success: function(data) {
+							var obj=jQuery.parseJSON(data);
+							var resp="<table border='2'><tr><td>Ritmo cardiaco</td><td>"+obj.RR+
+							"</td></tr><tr><td>Variabilidad del ritmo cardiaco</td><td>"+obj.HR+"</table>";
+							$("#datos").html(resp);
+						}
+					});		
+				}
+				setInterval(generar,2000); 
+			});
+		</script>
+	</head>
+	<body>
+		<h2>{{titulo}}</h2>
+		<br>
+		<div id="datos"></div>	
+	</body>
+</html>
