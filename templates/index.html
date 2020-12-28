@@ -4,9 +4,13 @@
 		<script>
 			$(document).ready(function(){
 				function generar(){
+					var nUsuario = document.getElementById('sesionUser').value;
 					$.ajax({
 						type: "GET",
 						url: "/aleatorio",
+						data:{
+								"sesionU":nUsuario
+						},
 						success: function(data) {
 							var obj=jQuery.parseJSON(data);
 							var resp="<table border='2'><tr><td>Ritmo cardiaco</td><td>"+obj.RR+
@@ -25,6 +29,20 @@
 						}
 					});
 				});
+				
+				$('#consultarsesion').click(function(){
+					var nUsuario = document.getElementById('sesionBuscada').value;
+					$.ajax({
+						type: "GET",
+						url: "/consultarS",
+						data:{
+								"sesionB":nUsuario
+							},
+						success: function(data) {
+							$("#mostrarsesion").html(data);
+						}
+					});
+				});
 				setInterval(generar,2000); 
 			});
 		</script>
@@ -32,10 +50,16 @@
 	<body>
 		<h2>{{titulo}}</h2>
 		<br>
+		<p>Numero de sesion: <input type="text" id="sesionUser"></p>
+		<br>
 		<div id="datos"></div>
 		<br>
+		<p>Numero de sesion: <input type="text" id="sesionBuscada"></p>
+		<br>
 		<button id="consultar">Consultar</button>
+		<button id="consultarsesion">Consultar Sesion</button>
         <br><br>
 		<div id="mostrardatos"></div>
+		<div id="mostrarsesion"></div>
 	</body>
 </html>
