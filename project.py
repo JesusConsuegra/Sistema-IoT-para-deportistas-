@@ -19,5 +19,9 @@ def aleatorio():
 	man.agregar_datos(estampa, RR, HR)
 	return	"{\"HR\":"+str(HR)+",\"RR\":"+str(RR)+"}"
 
+@app.route("/consultarT")
+def consultarT():
+	return man.consultar_datos()
+
 if __name__ == "__main__":
 	app.run("0.0.0.0")
