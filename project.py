@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from handler_ddbb import handler_ddbb
 import random
 import time
@@ -16,12 +16,18 @@ def aleatorio():
 	HR = random.randint(60,100)
 	RR = 60000/HR
 	estampa=time.time()*1000
-	man.agregar_datos(estampa, RR, HR)
+	sesion=str(request.args["sesionU"])
+	man.agregar_datos(estampa, RR, HR, sesion)
 	return	"{\"HR\":"+str(HR)+",\"RR\":"+str(RR)+"}"
 
 @app.route("/consultarT")
 def consultarT():
 	return man.consultar_datos()
+
+@app.route("/consultarS")
+def consultarS():
+	sesion=str(request.args["sesionB"])
+	return man.consultar_sesion(sesion)
 
 if __name__ == "__main__":
 	app.run("0.0.0.0")
