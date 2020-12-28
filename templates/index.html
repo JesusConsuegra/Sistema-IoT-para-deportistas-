@@ -13,8 +13,18 @@
 							"</td></tr><tr><td>Variabilidad del ritmo cardiaco</td><td>"+obj.HR+"</table>";
 							$("#datos").html(resp);
 						}
-					});		
+					});
 				}
+				
+				$('#consultar').click(function(){
+					$.ajax({
+						type: "GET",
+						url: "/consultarT",
+						success: function(data) {
+							$("#mostrardatos").html(data);
+						}
+					});
+				});
 				setInterval(generar,2000); 
 			});
 		</script>
@@ -22,6 +32,10 @@
 	<body>
 		<h2>{{titulo}}</h2>
 		<br>
-		<div id="datos"></div>	
+		<div id="datos"></div>
+		<br>
+		<button id="consultar">Consultar</button>
+        <br><br>
+		<div id="mostrardatos"></div>
 	</body>
 </html>
