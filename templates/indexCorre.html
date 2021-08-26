@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{{url_for('static', filename = 'style_tabs.css')}}" rel="stylesheet">
+		<script src="{{url_for('static', filename = 'tabs.js')}}"></script>
+		<script src="{{url_for('static', filename = 'g.js')}}"></script>
+		<script src="{{url_for('static', filename = 'b.js')}}"></script>
+
+	</head>
+	<body>
+		<div class="tab">
+			<button class="tablinks" onclick="openCity(event, 'Escaneo')">Escaneo</button>
+            <button class="tablinks" onclick="openCity(event, 'BD')">Base de datos </button>
+            <button class="tablinks" onclick="openCity(event, 'Sesion')">Sesión</button>
+            <button class="tablinks" onclick="openCity(event, 'Estadisticas')">Estadísticas</button>
+            <button class="tablinks" onclick="openCity(event, 'm1')">Modelo 1</button>
+            <button class="tablinks" onclick="openCity(event, 'm2')">Modelo 2</button>
+		</div>
+       
+		<div id="Escaneo" class="tabcontent">
+			<center>
+			<h2>{{titulo}}</h2>
+			<p>HR y RR en tiempo real </p>
+			<br>
+			<p>Numero de sesion: <input type="text" id="sesionUser"></p>
+			<button id="iniciar">Iniciar escaneo</button>
+			<button id="detener">Detener escaneo</button>
+			</center>
+			<br>
+			<center>
+				<table border="2">
+					<tr><td>HR</td><td><p id="content"></p></td></tr>
+					<tr><td>RR</td><td><p id="dateChange"></p></td></tr>
+				</table>
+			  <br>
+          	<div id="chartContainer" style="height: 200px; width: 100%;"></div>
+            <div id="chartContainer2" style="height: 200px; width: 100%;"></div>
+            </center>
+		</div>
+       
+		<div id="Sesion" class="tabcontent">
+			<center>
+			<p>Numero de sesion: <input type="text" id="sesionBuscada"></p>
+			<br>
+			<button id="consultarsesion">Consultar Sesion</button>
+            <br><br>
+			<div id="mostrarsesion"></div>
+			</center>
+		</div>
+
+		<div id="BD" class="tabcontent">
+			<center>
+			<p>Se muestra la base de datos de cada una de las sesiones </p>
+			<button id="consultar">Consultar</button>
+            <br><br>
+            <div id="mostrardatos"></div>
+            </center>
+		</div>		
+
+		<div id="Estadisticas" class="tabcontent">
+			<center>
+			<p>Se aprecian los datos estadísticos de la sesión seleccionada </p>
+			<p>Numero de sesion: <input type="text" id="sesionestadistica"></p>
+			<br>
+			<button id="estadistica">Estadistica</button>
+            <br><br>
+			<div id="mostrarestadistica"></div>
+			</center>
+		</div>
+
+		<div id="m1" class="tabcontent">
+			<center>
+			<h2>Se muestran los centroides tomando como referencia HR y RR</h2>
+			<p>Numero de Sesion: <input type="text" id="sesioncentroide"></p>
+			<p>Numero de Centroide: <input type="text" id="numcentroide"></p>
+			<br>
+			<button id="centroide">Modelo 1</button>
+            <br><br>
+            <div id="mostrarcentroide"></div>
+			<div id="imagen"><img src=""></div>
+			</center>	
+		</div>
+
+		<div id="m2" class="tabcontent">
+			<center>
+			<h2>Se muestran los centroides tomando como referencia el nivel de riesgo y RR</h2>
+			<h3>Nivel bajo es (1),moderao (2) y alto (3)</h3>
+			<p>Numero de Sesion: <input type="text" id="sesioncentroide2"></p>
+			<p>Numero de Centroide: <input type="text" id="numcentroide2"></p>
+			<br>
+			<button id="centroide2">Modelo 2</button>
+            <br><br>
+             
+            <div id="mostrarcentroide2"></div>
+  			<div id="imagen2"><img src=""></div>         
+            </center>		
+		</div>
+
+	</body>
+</html>
